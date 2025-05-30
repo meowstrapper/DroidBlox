@@ -29,3 +29,7 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 
 # WHY IS IT PYTHON!1!! ITS SO SLOW YK???
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
+
+# License
+- Drakestrap is under the terms of the [MIT License](https://github.com/helloplauz10/Drakestrap/blob/main/LICENSE)
+- Bloxstrap is also under the terms of the [MIT License](https://github.com/bloxstraplabs/bloxstrap)
