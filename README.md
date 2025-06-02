@@ -25,7 +25,7 @@ You will need root for the features. You can emulate root by using [VMOS](https:
     - Retain fast flags after updating
 
 # But where's texture configuration?
-Roblox recently loaded their assets inside the APK and I cannot find a way to modify the assets **without configuring the APK** which was possible before. 
+Roblox recently loaded their assets inside the APK and I cannot find a way to modify the assets **without configuring the APK** which was possible before.
 
 # TODO List
 - [ ] Figure out how to set assets
@@ -38,3 +38,8 @@ I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or o
 # License
 - Drakestrap is under the terms of the [MIT License](https://github.com/helloplauz10/Drakestrap/blob/main/LICENSE)
 - Bloxstrap is also under the terms of the [MIT License](https://github.com/bloxstraplabs/bloxstrap)
+
+# Credits
+- [Valra](https://github.com/NotValra) for allowing me to use his [server list of IPs](https://github.com/NotValra/RoValra/blob/main/data/ServerList.json)
+- [yzziK](https://github.com/dead8309) for allowing me to refactor his code about how [Kizzy](https://github.com/dead8309/Kizzy) connects to Discord gateway and handle connection
+- [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap/) for the functions & classes refactored in python
