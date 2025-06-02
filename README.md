@@ -8,7 +8,12 @@ It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to a
 # When will it release?
 Anytime soon, maybe if I dont procasinate about making it.
 
+# Sad thing
+You will need root for the features. You can emulate root by using [VMOS](https://vmos.com)
+
 # Features
+- **Integrations**
+    - Launch other intents while launching Roblox
 - **Activity Tracking**
     - Notifies you about your current server's location
     - Be able to set your RPC about your playing status (with [BloxstrapRPC](https://github.com/bloxstraplabs/bloxstrap/wiki/Integrating-Bloxstrap-functionality-into-your-game) supported
