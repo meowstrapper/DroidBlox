@@ -1,7 +1,6 @@
-# Drakestrap
-### NOT AFFILIATED WITH [AUBREY DRAKE GRAHAM](https://en.wikipedia.org/wiki/Drake_(musician))
+# DroidBlox
 
-Drakestrap is a bootstrapper for Roblox's android client that gives you additional features.
+DroidBlox is a bootstrapper for Roblox's android client that gives you additional features.
 
 It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to android except there are some features that are **not currently possible** in the android version. 
 
@@ -36,7 +35,7 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
 
 # License
-- Drakestrap is under the terms of the [MIT License](https://github.com/helloplauz10/Drakestrap/blob/main/LICENSE)
+- DroidBlox is under the terms of the [MIT License](https://github.com/helloplauz10/DroidBlox/blob/main/LICENSE)
 - Bloxstrap is also under the terms of the [MIT License](https://github.com/bloxstraplabs/bloxstrap)
 
 # Credits
