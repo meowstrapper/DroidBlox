@@ -16,8 +16,10 @@ It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to a
 # When will it release?
 Anytime soon, maybe if I dont procasinate about making it.
 
-# Sad thing
-You will need root for the features. You can emulate root by using [VMOS](https://vmos.com)
+# WARNING!
+This application uses [SpaceCore](https://github.com/FSpaceCore/SpaceCore/) which is not open source.
+It's also unsure if you will get banned on Roblox for using this.
+I am not responsible if you got banned or your phone got a virus for using it ([make an issue](https://github.com/meowstrapper/DroidBlox/issues) if it ever happens) so **use it at your own risk!!**
 
 # Features
 - **Integrations**
