@@ -46,7 +46,7 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
 
 # License
-- DroidBlox is licensed under the [GNU GPL v2.0 License](https://github.com/meowstrappers/DroidBlox/blob/main/LICENSE)
+- DroidBlox is licensed under the [GNU GPL v2.0 License](https://github.com/meowstrapper/DroidBlox/blob/main/LICENSE)
 - Bloxstrap is license under the [MIT License](https://github.com/bloxstraplabs/bloxstrap/blob/main/LICENSE)
 
 # Credits
