@@ -17,9 +17,9 @@ It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to a
 Anytime soon, maybe if I dont procasinate about making it.
 
 # WARNING!
-This application uses [SpaceCore](https://github.com/FSpaceCore/SpaceCore/) which is not open source.
-It's also unsure if you will get banned on Roblox for using this.
-I am not responsible if you got banned or your phone got a virus for using it ([make an issue](https://github.com/meowstrapper/DroidBlox/issues) if it ever happens) so **use it at your own risk!!**
+It's unsure if you will get banned on Roblox for using this, if you have been banned, join [our Discord server](https://discord.gg/zFspvBwH92) and send the ban screenshot there.
+
+The discord rich presence feature uses the Discord gateway connection. **Use it at your own risk.**
 
 # Features
 - **Integrations**
@@ -46,8 +46,8 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
 
 # License
-- DroidBlox is under the terms of the [MIT License](https://github.com/helloplauz10/DroidBlox/blob/main/LICENSE)
-- Bloxstrap is also under the terms of the [MIT License](https://github.com/bloxstraplabs/bloxstrap)
+- DroidBlox is licensed under the [GNU GPL v2.0 License](https://github.com/meowstrappers/DroidBlox/blob/main/LICENSE)
+- Bloxstrap is license under the [MIT License](https://github.com/bloxstraplabs/bloxstrap/blob/main/LICENSE)
 
 # Credits
 - [Valra](https://github.com/NotValra) for allowing me to use his [server list of IPs](https://github.com/NotValra/RoValra/blob/main/data/ServerList.json)
