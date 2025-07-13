@@ -4,7 +4,7 @@
 
 ![MIT License](https://img.shields.io/github/license/helloplauz10/DroidBlox?color=47b520)
 ![its slow](https://img.shields.io/badge/made%20with-slow%20python-47b520)
-[![Discord Server](https://img.shields.io/discord/%201377228674599878737?color=47b520)](https://discord.gg/zFspvBwH92)
+<!-- [![Discord Server](https://img.shields.io/discord/%201377228674599878737?color=47b520)](https://discord.gg/zFspvBwH92) -->
 </div>
 
 ----
