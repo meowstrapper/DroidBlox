@@ -1,6 +1,6 @@
 # DroidBlox
 <div align="center">
-<img src="https://github.com/helloplauz10/DroidBlox/raw/main/droidblox/assets/icon.png" height=300>
+<img src="https://github.com/helloplauz10/DroidBlox/raw/main/droidblox/assets/logo.png" height=300>
 
 ![MIT License](https://img.shields.io/github/license/helloplauz10/DroidBlox?color=47b520)
 ![its slow](https://img.shields.io/badge/made%20with-slow%20python-47b520)
