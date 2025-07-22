@@ -39,7 +39,7 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 
 # TODO List
 - [ ] Figure out how to set assets
-- [ ] Make the UX Design with KivyMD
+- [x] Make the UX Design with KivyMD
 - [ ] Optimize things
 
 # WHY IS IT PYTHON!1!! ITS SO SLOW YK???
