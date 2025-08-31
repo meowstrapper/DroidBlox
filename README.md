@@ -13,6 +13,9 @@ DroidBlox is a bootstrapper for Roblox's android client that gives you additiona
 
 It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to android except there are some features that are **not currently possible** in the android version. 
 
+## THIS APP REQUIRES ROOT!!
+Wait for me to release a version that doesn't require root. Right now the technique used for non-root configuration (by using clone apps) is patched.
+
 # When will it release?
 Anytime soon, maybe if I dont procasinate about making it.
 
