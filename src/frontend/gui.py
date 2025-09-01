@@ -8,7 +8,7 @@ from kivy.metrics import dp
 from kivy.logger import Logger, LOG_LEVELS
 from kivy.properties import BooleanProperty, NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.codeinput import CodeInput
+#from kivy.uix.codeinput import CodeInput
 
 from kivymd.app import MDApp
 from kivymd.uix.appbar import (
