@@ -1,6 +1,6 @@
 # DroidBlox
 <div align="center">
-<img src="https://github.com/helloplauz10/DroidBlox/raw/main/droidblox/assets/logo.png" height=300>
+<img src="assets/icon.png" height=300>
 
 ![MIT License](https://img.shields.io/github/license/helloplauz10/DroidBlox?color=47b520)
 ![its slow](https://img.shields.io/badge/made%20with-slow%20python-47b520)
@@ -12,6 +12,8 @@
 DroidBlox is a bootstrapper for Roblox's android client that gives you additional features.
 
 It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to android except there are some features that are **not currently possible** in the android version. 
+
+# DO NOT TRY TO DOWNLOAD AND USE THE APK BUILDS IN THE ACTION TABS, THIS APP ISN'T STILL RELEASED AND UNFINISHED
 
 ## THIS APP REQUIRES ROOT!!
 Wait for me to release a version that doesn't require root. Right now the technique used for non-root configuration (by using clone apps) is patched.
@@ -64,3 +66,4 @@ I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or o
 - [websockets](https://github.com/python-websockets/websockets/blob/main/LICENSE) BSD 3-Clause "New" or "Revised" License
 - [pyjnius](https://github.com/kivy/pyjnius/blob/master/LICENSE) MIT License
 - [buildozer](https://github.com/kivy/buildozer/blob/master/LICENSE) MIT License
+- [android-notify](https://github.com/Fector101/android_notify) ???
