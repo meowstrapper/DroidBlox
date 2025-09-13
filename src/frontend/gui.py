@@ -106,8 +106,13 @@ class FixMDLabel(MDLabel):
 
 class SectionText(MDLabel):
     def __init__(self, text, *args, **kwargs):
-        super().__init__(text = text, bold = True, font_style = "Label", *args, **kwargs)
-        self.adaptive_size = True
+        super().__init__(
+            text = text, 
+            bold = True, 
+            font_style = "Label",
+            adaptive_height = True,
+            *args, **kwargs
+        )
         self.text_color = self.theme_cls.primaryColor
 
 # lmao wtf should i call it

@@ -119,7 +119,7 @@ class ActivityWatcherSession:
         robloxPID = getRobloxPID()
         Logger.debug(TAG + f"Attempting to logcat roblox (pid is {robloxPID})")
         self.process = subprocess.Popen(
-            ["adb", "logcat", "--pid", str(robloxPID)],
+            [suBinaryPath, "-c", "logcat", "--pid", str(robloxPID)],
             stdout = subprocess.PIPE,
             stderr = subprocess.STDOUT
         )
