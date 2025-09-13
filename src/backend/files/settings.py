@@ -32,7 +32,7 @@ def readSettings() -> dict:
         return settings
 
 def writeSetting(setting: str, value: Any):
-    Logger.debug(TAG + f"Attemting to write setting {setting}" + ("as {value}" if setting != "token" else ''))
+    Logger.debug(TAG + f"Attemting to write setting {setting}" + (f"as {value}" if setting != "token" else ''))
     oldSettings = readSettings()
     oldSettings[setting] = value
     toLog = oldSettings.copy()

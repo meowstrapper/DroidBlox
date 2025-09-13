@@ -47,6 +47,7 @@ from kivymd.uix.textfield import MDTextField
 from kivymd.uix.transition import MDSharedAxisTransition
 
 from . import webview
+from backend import activitywatcher
 from backend.threadtools import scheduleInClock
 from backend.apis import roblox, discord
 from backend.files import fflags, playlogs, settings
@@ -106,7 +107,7 @@ class FixMDLabel(MDLabel):
 class SectionText(FixMDLabel):
     def __init__(self, text, *args, **kwargs):
         super().__init__(text = text, bold = True, fontSize = 13, *args, **kwargs)
-        self.height = dp(15)
+        self.adaptive_size = True
         self.text_color = self.theme_cls.primaryColor
 
 # lmao wtf should i call it
@@ -365,6 +366,11 @@ class DroidBloxGUI(MDApp):
         )
         self.ScreenManager = MDScreenManager(
             BasicScreen( # INTEGRATIONS
+                ExtendedButton(
+                    title = "Launch Roblox",
+                    subtitle = "Start playing Roblox",
+                    callback = self._launchRoblox
+                ),
                 SectionText("Activity tracking"),
                 ExtendedToggle(
                     title = "Enable activity tracking",
@@ -424,6 +430,9 @@ class DroidBloxGUI(MDApp):
                     icon = "pencil",
                     title = "Fast Flag Editor",
                     subtitle = "Manage your own Fast Flags. Use with caution. (COMING NEXT UPDATE)",
+                    callback = lambda: (
+                        Logger.warning(TAG + "haiii:3333")
+                    )
                 ),
                 ExtendedToggle(
                     title = "Allow DroidBlox to manage Fast Flags",
@@ -704,7 +713,7 @@ class DroidBloxGUI(MDApp):
             BasicScreen(
                 MDBoxLayout(
                     FitImage(
-                        source = "https://raw.githubusercontent.com/meowstrapper/DroidBlox/main/droidblox/assets/logo.png",
+                        source = "https://github.com/meowstrapper/DroidBlox/blob/main/assets/icon.png?raw=true",
                         fit_mode = "scale-down"
                     ),
                     size_hint = (1, None),
@@ -946,6 +955,18 @@ class DroidBloxGUI(MDApp):
         IntegrationsScreen.loginToDiscord.mainSubtitle.text = "Login to discord to show your game activity."
         IntegrationsScreen.loginToDiscord.callback = self._loginToDiscord
     
+    @scheduleInClock
+    def _launchRoblox(self):
+        currentSettings = settings.readSettings()
+        Logger.info(TAG + f"Launching Roblox")
+        webbrowser.open("roblox://")
+        if currentSettings["applyFFlags"]:
+            fflags.applyFFlagsToRoblox()
+        if currentSettings["enableActivityTracking"]:
+            activityWatcher = activitywatcher.ActivityWatcherSession()
+            Logger.debug(TAG + "Starting activity watcher")
+            activityWatcher.start()
+
     def createRef(self, url, text = "Learn more."):
         primaryColor = self.theme_cls.primaryColor
         r = round(primaryColor[0] * 255)

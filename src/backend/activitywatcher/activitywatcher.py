@@ -77,7 +77,7 @@ def fetchIPLocation(ip: str):
         return location
 
 def getRobloxPID() -> int:
-    return int(subprocess.check_output(["adb", "shell", "pidof com.roblox.client"]).decode(errors = "ignore"))
+    return int(subprocess.check_output([suBinaryPath, "-c", "pidof com.roblox.client"]).decode(errors = "ignore"))
 
 class ActivityWatcherSession:
     def __init__(self):
@@ -226,16 +226,16 @@ class ActivityWatcherSession:
         if not location:
             return
         Logger.info(TAG + f"Connected at {location}")
-        # notification = Notification(
-        #     title = "Connected to server",
-        #     message = f"Located at {location}"
-        # )
-        # notification.addLine(f"Place ID: {self.placeId}")
-        # notification.addLine(f"Job ID: {self.jobId}")
-        # notification.addLine(f"UDMUX IP: {self.udmuxIp}")
+        notification = Notification(
+            title = "Connected to server",
+            message = f"Located at {location}"
+        )
+        notification.addLine(f"Place ID: {self.placeId}")
+        notification.addLine(f"Job ID: {self.jobId}")
+        notification.addLine(f"UDMUX IP: {self.udmuxIp}")
 
-        # Logger.debug(TAG + f"Sending out notification")
-        # notification.send()
+        Logger.debug(TAG + f"Sending out notification")
+        notification.send()
     
     @scheduleInClock
     def _handleServerJoined(self):
