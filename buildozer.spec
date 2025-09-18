@@ -237,7 +237,7 @@ android.add_compile_options = "sourceCompatibility = 1.8", "targetCompatibility 
 # (list) Gradle repositories to add {can be necessary for some android.gradle_dependencies}
 # please enclose in double quotes 
 # e.g. android.gradle_repositories = "maven { url 'https://repo.spring.io/release' }"
-android.add_gradle_repositories = "maven { url 'https://jitpack.io' }"
+android.add_gradle_repositories = maven { url 'https://jitpack.io' }
 
 # (list) packaging options to add
 # see https://developer.android.com/reference/tools/gradle-api/7.1/com/android/build/api/dsl/PackagingOptions
