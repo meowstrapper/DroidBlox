@@ -219,7 +219,10 @@ android.add_src = java
 #android.add_resources =
 
 # (list) Gradle dependencies to add
-android.gradle_dependencies = androidx.core:core:1.6.0, androidx.core:core-ktx:1.15.0
+android.gradle_dependencies = androidx.core:core:1.6.0,
+    androidx.core:core-ktx:1.15.0,
+    com.github.topjohnwu.libsu:core:6.0.0,
+    com.github.topjohnwu.libsu:nio:6.0.0
 
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
@@ -229,12 +232,12 @@ android.enable_androidx = True
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option
 # see https://developer.android.com/studio/write/java8-support for further information
-# android.add_compile_options = "sourceCompatibility = 1.8", "targetCompatibility = 1.8"
+android.add_compile_options = "sourceCompatibility = 1.8", "targetCompatibility = 1.8"
 
 # (list) Gradle repositories to add {can be necessary for some android.gradle_dependencies}
 # please enclose in double quotes 
 # e.g. android.gradle_repositories = "maven { url 'https://repo.spring.io/release' }"
-#android.add_gradle_repositories =
+android.add_gradle_repositories = "maven { url 'https://jitpack.io' }"
 
 # (list) packaging options to add
 # see https://developer.android.com/reference/tools/gradle-api/7.1/com/android/build/api/dsl/PackagingOptions
