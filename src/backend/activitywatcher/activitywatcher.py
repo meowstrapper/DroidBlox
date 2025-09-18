@@ -1,3 +1,4 @@
+# TODO: find a way to only show one toast when using su
 from kivy.logger import Logger
 
 from backend.apis import discord, roblox
@@ -81,7 +82,6 @@ def getRobloxPID() -> int:
 
 class ActivityWatcherSession:
     def __init__(self):
-        self.currentSettings = settings.readSettings()
 
         self.process: subprocess.Popen = None
         self.lastTimeOfLogEntry: float = None
@@ -119,15 +119,13 @@ class ActivityWatcherSession:
         robloxPID = getRobloxPID()
         Logger.debug(TAG + f"Attempting to logcat roblox (pid is {robloxPID})")
         self.process = subprocess.Popen(
-            [suBinaryPath, "-c", "logcat", "--pid", str(robloxPID)],
+            [suBinaryPath, "-c", f"logcat --pid {str(robloxPID)}"],
             stdout = subprocess.PIPE,
             stderr = subprocess.STDOUT
         )
 
         Logger.debug(TAG + "Starting to monitor whether roblox exited")
         self._checkIfRobloxExited()
-
-        self.currentSettings = settings.readSettings()
 
         while (not self.stopMonitoringEvent.is_set()) or (self.process.poll() is None):
             logEntry: str = self.process.stdout.readline().decode(errors = "ignore")
@@ -155,9 +153,10 @@ class ActivityWatcherSession:
 
                 elif LogEntries.GameJoinedEntry in logEntry:
                     Logger.info(TAG + "Joined the server! (Setting RPC and notifications if user agreed)")
-                    if self.rpcSession:
+                    if self.rpcSession: 
+                        Logger.debug
                         self._handleServerJoined(time.time())
-                    if self.currentSettings["showServerLocation"]:
+                    if settings.readSettings()["showServerLocation"]:
                         self._handleNotifyServerLocation()
 
                 elif LogEntries.GameMessageEntry in logEntry:
@@ -203,10 +202,11 @@ class ActivityWatcherSession:
 
     def start(self):
         self.startedAt = time.time()
+        currentSettings = settings.readSettings()
 
         Logger.info(TAG + f"Initializing activity watcher")
         self._startMonitoring()
-        if self.currentSettings["token"] and self.currentSettings["showGameActivity"]:
+        if currentSettings["token"] and currentSettings["showGameActivity"]:
             Logger.info(TAG + f"Initializing rpc session")
             self.rpcSession = rpc.RPCSession()
             self.rpcSession.changeRPC(rpc.models.ChangeRPCPayload(
@@ -303,7 +303,8 @@ class ActivityWatcherSession:
     
     @scheduleInClock
     def _handleBloxstrapRPC(self, message: BSRPCMessage):
-        if message.command == "SetLaunchData" and self.currentSettings["allowActivityJoining"]:
+        currentSettings = settings.readSettings()
+        if message.command == "SetLaunchData" and currentSettings["allowActivityJoining"]:
             rpcToSet = cloneDataclass(self.originalRPCArgs)
             rpcToSet.buttons[0].url += "&launchData" + urllib.parse.quote(message.data)
 

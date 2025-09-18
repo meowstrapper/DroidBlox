@@ -48,9 +48,10 @@ from kivymd.uix.transition import MDSharedAxisTransition
 
 from . import webview
 from backend import activitywatcher
-from backend.threadtools import scheduleInClock
 from backend.apis import roblox, discord
 from backend.files import fflags, playlogs, settings
+from backend.launchRoblox import launchRoblox
+from backend.threadtools import scheduleInClock
 
 import sys
 import time
@@ -285,7 +286,7 @@ class RecentGamePlayed(MDBoxLayout):
                 MDButtonText(
                     text = f"Rejoin {'(might be expired)' if mightBeExpired else ''}"
                 ),
-                on_release = lambda x: webbrowser.open(self.robloxDeeplink),
+                on_release = lambda x: launchRoblox(self.robloxDeeplink),
                 style = "filled"
             ),
             spacing = dp(6),
@@ -964,8 +965,8 @@ class DroidBloxGUI(MDApp):
     def _launchRoblox(self):
         currentSettings = settings.readSettings()
         Logger.info(TAG + f"Launching Roblox")
-        webbrowser.open("roblox://")
         if currentSettings["applyFFlags"]:
+            Logger.debug(TAG + f"Applying fast flags")
             fflags.applyFFlagsToRoblox()
         if currentSettings["enableActivityTracking"]:
             activityWatcher = activitywatcher.ActivityWatcherSession()
