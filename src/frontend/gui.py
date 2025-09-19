@@ -955,7 +955,7 @@ class DroidBloxGUI(MDApp):
 
         Logger.debug(TAG + "Logging out of discord and going back to the normal callback and text")
         discord.logout(settings.readSettings()["token"])
-        settings.writeSetting("token", "")
+        settings.writeSetting("token", None)
 
         IntegrationsScreen.loginToDiscord.mainTitle.text = "Login to Discord"
         IntegrationsScreen.loginToDiscord.mainSubtitle.text = "Login to discord to show your game activity."
@@ -968,6 +968,7 @@ class DroidBloxGUI(MDApp):
         if currentSettings["applyFFlags"]:
             Logger.debug(TAG + f"Applying fast flags")
             fflags.applyFFlagsToRoblox()
+        launchRoblox()
         if currentSettings["enableActivityTracking"]:
             activityWatcher = activitywatcher.ActivityWatcherSession()
             Logger.debug(TAG + "Starting activity watcher")
