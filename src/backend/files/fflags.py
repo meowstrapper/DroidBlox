@@ -58,19 +58,9 @@ def deleteFFlags(fflags: List[str]):
 
 def applyFFlagsToRoblox():
     Logger.debug(TAG + f"Attempting to apply fflags to roblox")
-    # subprocess.call([suBinaryPath, "-c", f"mkdir -p {paths._robloxFFlagsFolder}"])
-    # subprocess.call([suBinaryPath, "-c", f"cp {paths.dbFFlags} {paths.robloxFFlags}"])
-    
-    # try:
-    robloxFFlags = ExtendedFile(paths.robloxFFlags)
-    robloxFFlagsFolder = robloxFFlags.getParentFile()
-    if not robloxFFlagsFolder.exists():
-        Logger.debug(TAG + "Creating ClientSettings folder")
-        robloxFFlagsFolder.mkdir()
-    Logger.debug(TAG + "Writing to ClientAppSettings.json")
-    # too lazy but ignore this first
-    # except Exception as e:
-    #     Logger.error(TAG + f"Something went wrong while trying to apply fflags! Error: {e}")
+    subprocess.call([suBinaryPath, "-c", f"mkdir -p {paths._robloxFFlagsFolder}"])
+    subprocess.call([suBinaryPath, "-c", f"cp {paths.dbFFlags} {paths.robloxFFlags}"])
+
 try:
     readFFlags()
 except:

@@ -116,7 +116,14 @@ class ActivityWatcherSession:
 
     @scheduleInClock
     def _startMonitoring(self):
-        robloxPID = getRobloxPID()
+        Logger.debug(TAG + f"Attempting to get Roblox PID (delay per 2 sec)")
+        while True:
+            try:
+                robloxPID = getRobloxPID()
+                break
+            except:
+                Logger.debug(TAG + f"Failed to get Roblox PID, delaying")
+        
         Logger.debug(TAG + f"Attempting to logcat roblox (pid is {robloxPID})")
         self.process = subprocess.Popen(
             [suBinaryPath, "-c", f"logcat --pid {str(robloxPID)}"],

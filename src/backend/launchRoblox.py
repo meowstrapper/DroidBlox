@@ -1,7 +1,9 @@
-# TODO: Remove this in the future because you can just launch roblox by opening roblox://
+# TODO: Remove this in the future
 
 from kivy.logger import Logger
 from kivy.utils import platform
+
+from backend.files import settings, fflags
 
 TAG = "DBLaunchRoblox" + ": "
 
@@ -12,13 +14,24 @@ if platform == "android":
     from jnius import autoclass, cast
     Intent = autoclass("android.content.Intent")
     Uri = autoclass("android.net.Uri")
-
+    ExtendedFile = autoclass("com.topjohnwu.superuser.nio.ExtendedFile")
+    
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")
-        intent = Intent()
-        intent.setAction(Intent.ACTION_VIEW)
-        intent.setData(Uri.parse(deeplinkUrl))
+
+        currentSettings = settings.readSettings()
         currentActivity = cast('android.app.Activity', mActivity)
+        launchIntent = currentActivity.getPackageManager().getLaunchIntentForPackage("com.roblox.client")
+
+        if not launchIntent:
+            Logger.error(TAG + "launchIntent is None! Not starting.")
+            return
+        
+        if currentSettings["applyFFlags"]:
+            Logger.info("Applying fast flags")
+            fflags.applyFFlagsToRoblox()
+            
+        launchIntent.setData(Uri.parse(deeplinkUrl))
         Logger.debug(TAG + "Starting intent")
         currentActivity.startActivity(intent)
 else:
