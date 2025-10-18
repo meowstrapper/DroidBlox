@@ -14,7 +14,6 @@ if platform == "android":
     from jnius import autoclass, cast
     Intent = autoclass("android.content.Intent")
     Uri = autoclass("android.net.Uri")
-    ExtendedFile = autoclass("com.topjohnwu.superuser.nio.ExtendedFile")
     
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")

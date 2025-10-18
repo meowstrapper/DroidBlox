@@ -8,6 +8,14 @@ from kivymd.uix.appbar import (
     MDTopAppBarLeadingButtonContainer,
     MDTopAppBarTitle
 )
+from kivymd.uix.dialog import (
+    MDDialog,
+    MDDialogIcon,
+    MDDialogHeadlineText,
+    MDDialogSupportingText,
+    MDDialogContentContainer,
+    MDDialogButtonContainer,
+)
 from kivymd.uix.navigationdrawer import (
     MDNavigationDrawer,
     MDNavigationDrawerLabel,
@@ -18,12 +26,19 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.transition import MDSharedAxisTransition
 
+from backend.rootchecker import checkForRootAccess
 from .elements import NavigationDrawerItem
 from .screens import *
 
 TAG = "DBMainGUI" + ": "
 
 class DroidBloxGUI(MDApp):
+    def on_pause(self):
+        Logger.debug(TAG, "on_pause()")
+        return True
+
+    def on_build(self):
+        Logger.warn("meow")
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Darkgreen"
@@ -69,6 +84,22 @@ class DroidBloxGUI(MDApp):
                 id = "NavigationDrawer"
             )
         )
+    
+    def promptNotRooted(self):
+        MDDialog(
+            MDDialogIcon(
+                icon = "alert"
+            ),
+            MDDialogHeadlineText(
+                text = "Root access required"
+            ),
+            MDDialogSupportingText(
+                text = "Your device isn't rooted or you might've not given DroidBlox root access. " \
+                        "DroidBlox needs root access in order to apply fast flags and use other features."
+            ),
+            on_dismiss = lambda *args: self.stop()
+        ).open()
+    
     def _switchScreen(self, screenToSwitch):
         Logger.debug(TAG + f"Switching screen to {screenToSwitch}")
         self.root.get_ids().ScreenManager.current = screenToSwitch

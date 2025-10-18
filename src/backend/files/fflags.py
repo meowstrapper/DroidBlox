@@ -15,12 +15,6 @@ __all__ = ["readFFlags", "writeFFlag", "mergeFFlags", "deleteFFlags", "applyFFla
 
 Logger.debug(TAG + f"FastFlags are located at {paths.dbFFlags}")
 
-if platform == "android":
-    from jnius import autoclass
-    ExtendedFile = autoclass("com.topjohnwu.superuser.nio.ExtendedFile")
-else:
-    Logger.debug(TAG + f"Running on {platform}, not importing")
-
 def readFFlags() -> dict:
     Logger.debug(TAG + "Attempting to read fflags")
     with open(paths.dbFFlags, "r") as readFFlag:
@@ -58,8 +52,7 @@ def deleteFFlags(fflags: List[str]):
 
 def applyFFlagsToRoblox():
     Logger.debug(TAG + f"Attempting to apply fflags to roblox")
-    subprocess.call([suBinaryPath, "-c", f"mkdir -p {paths._robloxFFlagsFolder}"])
-    subprocess.call([suBinaryPath, "-c", f"cp {paths.dbFFlags} {paths.robloxFFlags}"])
+    subprocess.call([suBinaryPath, "-c", f"mkdir -p {paths._robloxFFlagsFolder} && cp {paths.dbFFlags} {paths.robloxFFlags}"])
 
 try:
     readFFlags()
