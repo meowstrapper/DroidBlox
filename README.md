@@ -13,7 +13,7 @@ DroidBlox is a bootstrapper for Roblox's android client that gives you additiona
 
 It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to android except there are some features that are **not currently possible** in the android version. 
 
-# DO NOT TRY TO DOWNLOAD AND USE THE APK BUILDS IN THE ACTION TABS, THIS APP ISN'T STILL RELEASED AND UNFINISHED
+# DO NOT TRY TO DOWNLOAD AND USE THE APK BUILDS IN THE ACTION TABS, THIS APP ISN'T STILL RELEASED AND IS UNFINISHED
 
 ## THIS APP REQUIRES ROOT!!
 Wait for me to release a version that doesn't require root. Right now the technique used for non-root configuration (by using clone apps) is patched.
@@ -38,6 +38,7 @@ The discord rich presence feature uses the Discord gateway connection. **Use it 
     - Be able to customize them with ease
     - Merge your current fast flags with other ones
     - Retain your fast flags after updating
+    - NOTE! Due to [Roblox's new policy that limits some fast flags](https://devforum.roblox.com/t/allowlist-for-local-client-configuration-via-fast-flags/3966569), some might only work when you set them at the Fast Flags section.
 
 # But where's texture configuration?
 Roblox recently loaded their assets inside the APK and I cannot find a way to modify the assets **without configuring the APK** which was possible before.
@@ -49,6 +50,9 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 
 # WHY IS IT PYTHON!1!! ITS SO SLOW YK???
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
+
+# NOTE
+Will be refactored into kotlin soon :33
 
 # License
 - DroidBlox is licensed under the [GNU GPL v2.0 License](https://github.com/meowstrapper/DroidBlox/blob/main/LICENSE)
