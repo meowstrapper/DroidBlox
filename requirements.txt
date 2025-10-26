@@ -1,6 +1,7 @@
 requests
 android-notify
 websockets
+pygments
 https://github.com/kivy/pyjnius/archive/refs/heads/master.zip
 https://github.com/kivy/buildozer/archive/refs/heads/master.zip
 https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip

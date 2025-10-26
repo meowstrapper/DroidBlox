@@ -52,7 +52,8 @@ requirements = python3,
     android,
     android-notify,
     requests,
-    websockets
+    websockets,
+    pygments
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

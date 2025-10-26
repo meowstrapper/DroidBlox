@@ -27,10 +27,8 @@ class FFlags(BasicScreen):
             ExtendedButton(
                 icon = "pencil",
                 title = "Fast Flag Editor",
-                subtitle = "Manage your own Fast Flags. Use with caution. (COMING NEXT UPDATE)",
-                callback = lambda: (
-                    Logger.warning(TAG + "haiii:3333")
-                )
+                subtitle = "Manage your own Fast Flags. Use with caution.",
+                callback = self._goToFFlagsEditor
             ),
             ExtendedToggle(
                 title = "Allow DroidBlox to manage Fast Flags",
@@ -298,3 +296,7 @@ class FFlags(BasicScreen):
                 id = "pingBreakdown"
             )
         )
+
+    def _goToFFlagsEditor(self, *args):
+        Logger.debug(TAG + "Going to fflag editor screen")
+        self.parent.parent.get_ids().ScreenManager.current = "FastFlagsEditor"

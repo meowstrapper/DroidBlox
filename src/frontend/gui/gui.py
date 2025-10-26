@@ -49,6 +49,7 @@ class DroidBloxGUI(MDApp):
             MDNavigationLayout(MDScreenManager(
                 Integrations(),
                 FFlags(),
+                FFlagsEditor(),
                 PlayLogs(),
                 About(),
                 transition = MDSharedAxisTransition(),
