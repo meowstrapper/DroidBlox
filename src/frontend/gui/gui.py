@@ -48,8 +48,8 @@ class DroidBloxGUI(MDApp):
         return MDScreen(
             MDNavigationLayout(MDScreenManager(
                 Integrations(),
-                FFlags(),
-                FFlagsEditor(),
+                # FFlags(),
+                # FFlagsEditor(),
                 PlayLogs(),
                 About(),
                 transition = MDSharedAxisTransition(),
@@ -68,11 +68,11 @@ class DroidBloxGUI(MDApp):
                     callback = self._switchScreen,
                     selected = BooleanProperty(True)
                     ),
-                    NavigationDrawerItem(
-                        icon = "flag",
-                        text = "FastFlags",
-                        callback = self._switchScreen
-                    ),
+                    # NavigationDrawerItem(
+                    #     icon = "flag",
+                    #     text = "FastFlags",
+                    #     callback = self._switchScreen
+                    # ),
                     NavigationDrawerItem(
                         icon = "gamepad-variant",
                         text = "Play Logs",

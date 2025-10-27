@@ -209,7 +209,7 @@ class ActivityWatcherSession:
 
     def start(self):
         self.startedAt = time.time()
-        currentSettings = settings.readSettings()
+        self.currentSettings = settings.readSettings()
 
         Logger.info(TAG + f"Initializing activity watcher")
         self._startMonitoring()
@@ -310,8 +310,7 @@ class ActivityWatcherSession:
     
     @scheduleInClock
     def _handleBloxstrapRPC(self, message: BSRPCMessage):
-        currentSettings = settings.readSettings()
-        if message.command == "SetLaunchData" and currentSettings["allowActivityJoining"]:
+        if message.command == "SetLaunchData" and self.currentSettings["allowActivityJoining"]:
             rpcToSet = cloneDataclass(self.originalRPCArgs)
             rpcToSet.buttons[0].url += "&launchData" + urllib.parse.quote(message.data)
 
@@ -394,7 +393,7 @@ class ActivityWatcherSession:
                 elif dataRequest.largeImage:
                     rpcToSet.largeImage = mpUrls[0]
                 elif dataRequest.smallImage:
-                    rpcToSet.smallImage = mpUrls[1]
+                    rpcToSet.smallImage = mpUrls[0]
             
             Logger.debug(TAG + f"Changing RPC")
             self.rpcSession.changeRPC(rpcToSet)
