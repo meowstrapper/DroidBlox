@@ -23,7 +23,7 @@ except:
 loggingIntoDiscord = False
 def _onLoginCompleted(token):
     global loggingIntoDiscord
-    Logger.debug(TAG + "Login completed, se_loginTotting up token")
+    Logger.debug(TAG + "Login completed, setting up token")
     settings.writeSetting("token", token)
     loggingIntoDiscord = False
 
