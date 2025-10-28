@@ -24,6 +24,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.transition import MDSharedAxisTransition
 
+from backend.files import settings
 from backend.rootchecker import suBinaryPath, checkForRootAccess
 from .elements import NavigationDrawerItem
 from .screens import *
@@ -32,19 +33,19 @@ TAG = "DBMainGUI" + ": "
 
 class DroidBloxGUI(MDApp):
     def on_pause(self):
-        Logger.debug(TAG, "on_pause()")
+        Logger.debug(TAG + "on_pause()")
         return True
 
     def on_start(self):
         Logger.info(TAG + "Checking for root access")
-        if not checkForRootAccess():
-            Logger.error(TAG + "Not given root access or no root, prompting dialog.")
-            self.promptNotRooted()
-    
+        # if not checkForRootAccess():
+        #     Logger.error(TAG + "Not given root access or no root, prompting dialog.")
+        #     self.promptNotRooted()
+        
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Darkgreen"
-
+        
         return MDScreen(
             MDNavigationLayout(MDScreenManager(
                 Integrations(),

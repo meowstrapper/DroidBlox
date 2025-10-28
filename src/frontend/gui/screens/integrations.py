@@ -46,6 +46,8 @@ class Integrations(BasicScreen):
             id = "IntegrationsScreen",
             *args, **kwargs
         )
+
+        currentSettings = settings.readSettings()
         self.add_widgets(
             ExtendedButton(
                 title = "Launch Roblox",
@@ -53,12 +55,13 @@ class Integrations(BasicScreen):
                 callback = launchRoblox
             ),
             SectionText("Activity tracking"),
-            ExtendedButton(
+            ExtendedToggle(
                 title = "Enable activity tracking",
                 subtitle = "Allow DroidBlox to detect what Roblox game you're playing.",
                 callback = lambda value: (
                     settings.writeSetting("enableActivityTracking", value)
                 ),
+                active = currentSettings["enableActivityTracking"],
                 id = "enableActivityTracking"
             ),
             ExtendedToggle(
@@ -67,6 +70,7 @@ class Integrations(BasicScreen):
                 callback = lambda value: (
                     settings.writeSetting("showServerLocation", value)
                 ),
+                active = currentSettings["showServerLocation"],
                 id = "showServerLocation"
             ),
             SectionText("Discord Rich Presence"),
@@ -82,6 +86,7 @@ class Integrations(BasicScreen):
                 callback = lambda value: (
                     settings.writeSetting("showGameActivity", value)
                 ),
+                active = currentSettings["showGameActivity"],
                 id = "showGameActivity"
             ),
             ExtendedToggle(
@@ -90,6 +95,7 @@ class Integrations(BasicScreen):
                 callback = lambda value: (
                     settings.writeSetting("allowActivityJoining", value)
                 ),
+                active = currentSettings["allowActivityJoining"],
                 id = "allowActivityJoining"
             ),
             ExtendedToggle(
@@ -98,6 +104,7 @@ class Integrations(BasicScreen):
                 callback = lambda value: (
                     settings.writeSetting("showRobloxUser", value)
                 ),
+                active = currentSettings["showRobloxUser"],
                 id = "showRobloxUser"
             )
         )

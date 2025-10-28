@@ -1,6 +1,6 @@
 from kivy.clock import Clock, mainthread
 from kivy.metrics import dp
-from kivy.properties import NumericProperty, ObjectProperty, StringProperty
+from kivy.properties import BooleanProperty, NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 #from kivy.uix.codeinput import CodeInput
 
@@ -158,6 +158,7 @@ class ExtendedButton(RectangularRippleBehavior, IconWithTextDetails):
 
 class ExtendedToggle(IconWithTextDetails):
     callback: Callable[[bool], None] = ObjectProperty(lambda x: None) # epllipsis doesnt work?
+    active = BooleanProperty(False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -165,6 +166,7 @@ class ExtendedToggle(IconWithTextDetails):
             on_release = lambda x: self.callback(not x.active),
             pos_hint = {"center_y": 0.5}
         )
+        self.main.active = self.active
         self.add_widget(self.main)
 
 class ExtendedTextField(IconWithTextDetails):
