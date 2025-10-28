@@ -51,7 +51,7 @@ if platform == "android":
 
         launchIntent.setData(Uri.parse(deeplinkUrl))
         Logger.debug(TAG + "Starting intent")
-        currentActivity.startActivity(intent)
+        currentActivity.startActivity(launchIntent)
 
         if currentSettings["enableActivityTracking"]:
             Logger.info(TAG + "Starting activity tracker")

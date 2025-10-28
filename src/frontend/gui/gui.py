@@ -37,7 +37,7 @@ class DroidBloxGUI(MDApp):
 
     def on_start(self):
         Logger.info(TAG + "Checking for root access")
-        if (not suBinaryPath) and (not checkForRootAccess()):
+        if not checkForRootAccess():
             Logger.error(TAG + "Not given root access or no root, prompting dialog.")
             self.promptNotRooted()
     
