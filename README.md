@@ -34,7 +34,7 @@ The discord rich presence feature uses the Discord gateway connection. **Use it 
     - Be able to set your RPC about your playing status (with [BloxstrapRPC](https://github.com/bloxstraplabs/bloxstrap/wiki/Integrating-Bloxstrap-functionality-into-your-game) supported) 
     - Choose if you want others to join you by looking at your RPC
     - Be able to rejoin the last game at the same server you joined
-- **Fast Flags**
+- **Fast Flags (NOT WORKING)**
     - Be able to customize them with ease
     - Merge your current fast flags with other ones
     - Retain your fast flags after updating
@@ -47,6 +47,9 @@ Roblox recently loaded their assets inside the APK and I cannot find a way to mo
 - [ ] Figure out how to set assets
 - [x] Make the UX Design with KivyMD
 - [ ] Optimize things
+
+## Why do I need to login to Discord to use RPC?
+The android version of Discord currently doesn't have a way to set your presence—instead, DroidBlox will connect to Discord and changes your presence just like [Kizzy](https://github.com/dead8309/Kizzy)
 
 # WHY IS IT PYTHON!1!! ITS SO SLOW YK???
 I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or other languages with credits by linking this github repository at yours.
