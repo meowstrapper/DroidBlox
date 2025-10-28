@@ -3,7 +3,7 @@ from kivy.utils import platform
 
 import os
 
-__all__ = ["dbPath", "dbPlayLogs", "dbFFlags", "dbSettings", "robloxPath", "robloxLogs", "_robloxFFlagsFolder", "robloxFFlags"]
+__all__ = ["dbPath", "dbPlayLogs", "dbFFlags", "dbSettings", "dbCheckRobloxScript", "robloxPath", "robloxLogs", "_robloxFFlagsFolder", "robloxFFlags"]
 
 TAG = "DBPath" + ": "
 
@@ -20,6 +20,7 @@ Logger.debug(TAG + f"Default path is {dbPath}")
 dbPlayLogs = os.path.join(dbPath, "playlogs.json")
 dbFFlags = os.path.join(dbPath, "fflags.json")
 dbSettings = os.path.join(dbPath, "settings.json")
+dbCheckRobloxScript = os.path.join(dbPath, "checkRoblox.sh")
 
 robloxPath = "/data/user/0/com.roblox.client/"
 robloxLogs = os.path.join(robloxPath, "files", "appData", "logs")

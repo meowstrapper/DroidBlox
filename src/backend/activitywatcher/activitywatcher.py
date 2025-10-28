@@ -2,7 +2,7 @@
 from kivy.logger import Logger
 
 from backend.apis import discord, roblox
-from backend.files import settings, playlogs
+from backend.files import settings, playlogs, paths
 from backend.rootchecker import suBinaryPath
 from backend.threadtools import scheduleInClock
 
@@ -24,6 +24,30 @@ TAG = "DBActivityWatcher" + ": "
 
 __all__ = ["fetchIPLocation", "ActivityWatcherSession"]
 cachedRoSealListOfIP = {}
+
+checkRobloxScript = """#!/system/bin/sh
+robloxPID = ""
+while [ -z "$robloxPID" ]; do
+    robloxPID = "${pidof com.roblox.client}"
+    if [ -z "$robloxPID" ]; then
+        echo hi
+        sleep 1
+    fi
+done
+
+logcat --pid $robloxPID &
+logcatPID=$!
+
+while true; do
+    if [ -z "$(pidof com.roblox.client)"]; then
+        kill $logcatPID
+        exit 1;
+    fi
+    sleep 1
+done"""
+Logger.debug(TAG + "Writing shell script")
+with open(paths.dbCheckRobloxScript, "w") as writeCheckRobloxScript:
+    writeCheckRobloxScript.write(checkRobloxScript)
 
 def getIPLocationWithIPInfo(ip: str):
     requestTo = f"https://ipinfo.io/{ip}/json"
@@ -77,8 +101,8 @@ def fetchIPLocation(ip: str):
             Logger.debug(TAG + f"IP Location: {location}")
         return location
 
-def getRobloxPID() -> int:
-    return int(subprocess.check_output([suBinaryPath, "-c", "pidof com.roblox.client"]).decode(errors = "ignore"))
+# def getRobloxPID() -> int:
+#     return int(subprocess.check_output([suBinaryPath, "-c", "pidof com.roblox.client"]).decode(errors = "ignore"))
 
 class ActivityWatcherSession:
     def __init__(self):
@@ -100,41 +124,30 @@ class ActivityWatcherSession:
         self.playedAt: float = None
         self.leftAt: float = None
 
-    @scheduleInClock
-    def _checkIfRobloxExited(self):
-        shellScript = "while true; do if [[ -z $(pidof com.roblox.client) ]]; then exit 1; fi; sleep 1; done"
-        try:
-            subprocess.call([suBinaryPath, "-c", shellScript])
-        except:
-            Logger.info(TAG + "Roblox exited!")
-            if self.placeId:
-                Logger.info(TAG + "Attempting to log play session before killing the activity watcher:3")
-                self._logPlaySession()
-            Logger.info(TAG + "Killing activity watcher")
-            self.stop()
+    # @scheduleInClock
+    # def _checkIfRobloxExited(self):
+    #     shellScript = "while true; do if [ -z $(pidof com.roblox.client) ]; then exit 1; fi; sleep 1; done"
+    #     try:
+    #         subprocess.call([suBinaryPath, "-c", shellScript])
+    #     except:
+    #         Logger.info(TAG + "Roblox exited!")
+    #         if self.placeId:
+    #             Logger.info(TAG + "Attempting to log play session before killing the activity watcher:3")
+    #             self._logPlaySession()
+    #         Logger.info(TAG + "Killing activity watcher")
+    #         self.stop()
 
 
     @scheduleInClock
     def _startMonitoring(self):
-        Logger.debug(TAG + f"Attempting to get Roblox PID (delay per 2 sec)")
-        while True:
-            try:
-                robloxPID = getRobloxPID()
-                break
-            except:
-                Logger.debug(TAG + f"Failed to get Roblox PID, delaying")
-        
-        Logger.debug(TAG + f"Attempting to logcat roblox (pid is {robloxPID})")
+        Logger.debug(TAG + "Starting check roblox script")
         self.process = subprocess.Popen(
-            [suBinaryPath, "-c", f"logcat --pid {str(robloxPID)}"],
+            [suBinaryPath, "-c", f"sh {paths.dbCheckRobloxScript}"],
             stdout = subprocess.PIPE,
             stderr = subprocess.STDOUT
         )
 
-        Logger.debug(TAG + "Starting to monitor whether roblox exited")
-        self._checkIfRobloxExited()
-
-        while (not self.stopMonitoringEvent.is_set()) or (self.process.poll() is None):
+        while (self.process.poll() is None):
             logEntry: str = self.process.stdout.readline().decode(errors = "ignore")
             self.lastTimeOfLogEntry = time.time()
 
@@ -161,9 +174,10 @@ class ActivityWatcherSession:
                 elif LogEntries.GameJoinedEntry in logEntry:
                     Logger.info(TAG + "Joined the server! (Setting RPC and notifications if user agreed)")
                     if self.rpcSession: 
-                        Logger.debug
+                        Logger.debug(TAG + "Setting RPC")
                         self._handleServerJoined(time.time())
-                    if settings.readSettings()["showServerLocation"]:
+                    if self.currentSettings["showServerLocation"]:
+                        Logger.debug(TAG + "Notifying server location")
                         self._handleNotifyServerLocation()
 
                 elif LogEntries.GameMessageEntry in logEntry:
@@ -199,8 +213,16 @@ class ActivityWatcherSession:
 
             except Exception as e:
                 Logger.error(TAG + f"Something went wrong!; {e}\nLog Entry: {logEntry}")
+
+        Logger.info(TAG + f"Activity watcher ended!")
+        if self.placeId:
+            Logger.debug(TAG + "Attempting to log play session")
+            self._logPlaySession()
+        if self.rpcSession:
+            Logger.debug(TAG + "Stopping RPC Session")
+            self.rpcSession.stop()
         
-        Logger.info(TAG + f"Activity watcher ended! Resetting everything")
+        Logger.debug(TAG + "Resetting variables")
         self.placeId = None
         self.universeId = None
         self.jobId = None
