@@ -174,7 +174,7 @@ class ActivityWatcherSession:
                     Logger.info(TAG + "Joined the server! (Setting RPC and notifications if user agreed)")
                     if self.rpcSession: 
                         Logger.debug(TAG + "Setting RPC")
-                        self._handleServerJoined(time.time())
+                        self._handleServerJoined()
                     if self.currentSettings["showServerLocation"]:
                         Logger.debug(TAG + "Notifying server location")
                         self._handleNotifyServerLocation()
@@ -252,6 +252,7 @@ class ActivityWatcherSession:
     def _handleNotifyServerLocation(self):
         location = fetchIPLocation(self.udmuxIp)
         if not location:
+            Logger.error(TAG + "No location returned, not doing anything")
             return
         Logger.info(TAG + f"Connected at {location}")
         notification = Notification(
