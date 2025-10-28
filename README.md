@@ -75,7 +75,7 @@ $ adb install bin/dbtools-(VERSION)-(ARCH)-debug.apk
 ```
 6. Launch the APK and get the logcat output
 ```sh
-$ adb logcat --pid $(adb shell pidof com.drake.dbtools)
+$ adb logcat --pid $(adb shell pidof com.drake.droidblox)
 ```
 
 # License
