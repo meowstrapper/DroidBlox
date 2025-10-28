@@ -12,16 +12,17 @@ def suBinaryToUse() -> Union[bool, str]:
         if os.path.exists(i): return i
     return None
 
+suBinaryPath = suBinaryToUse()
+Logger.debug(TAG + f"Device is{'' if bool(suBinaryPath) else ' not'} rooted. Using {suBinaryPath}")
+
 def checkForRootAccess():
-    if not suBinaryToUse():
+    if not suBinaryPath:
         return False
         
     try:
-        checkRoot = subprocess.check_output([suBinaryToUse(), "-c", "echo check"])
+        checkRoot = subprocess.check_output([suBinaryPath, "-c", "echo check"])
         if checkRoot.decode().rstrip() == "check":
             return True
-    except:
+    except Exception as e:
+        Logger.warn(TAG + f"Error while checking root: {e}")
         return False
-
-suBinaryPath = suBinaryToUse()
-Logger.debug(TAG + f"Device is{'' if bool(suBinaryPath) else ' not'} rooted. Using {suBinaryPath}")

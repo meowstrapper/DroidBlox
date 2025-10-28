@@ -100,7 +100,7 @@ class DroidBloxGUI(MDApp):
                 text = "Your device isn't rooted or you might've not given DroidBlox root access. " \
                         "DroidBlox needs root access in order to apply fast flags and use other features."
             ),
-            on_dismiss = lambda *args: ...#self.stop()
+            on_dismiss = lambda *args: self.stop()
         ).open()
     
     def _switchScreen(self, screenToSwitch):
