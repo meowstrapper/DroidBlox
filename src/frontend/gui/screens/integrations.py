@@ -22,7 +22,7 @@ except:
 
 loggingIntoDiscord = False
 def _onLoginCompleted(token):
-    Logger.debug(TAG + "Login completed, setting up token")
+    Logger.debug(TAG + "Login completed, se_loginTotting up token")
     settings.writeSetting("token", token)
     loggingIntoDiscord = False
 
@@ -71,7 +71,7 @@ class Integrations(BasicScreen):
             ExtendedButton(
                 title = "Login To Discord",
                 subtitle = "Login to discord to show your game activity.",
-                callback = lambda: _loginToDiscord,
+                callback = _loginToDiscord,
                 id = "loginToDiscord"
             ),
             ExtendedToggle(

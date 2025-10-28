@@ -17,7 +17,7 @@ settingTemplate = {
     "showGameActivity": True,
     "allowActivityJoining": False,
     "showRobloxUser": False,
-    "applyFFlags": True
+    "applyFFlags": False
 }
 
 Logger.debug(TAG + f"Settings are located at {paths.dbSettings}")
