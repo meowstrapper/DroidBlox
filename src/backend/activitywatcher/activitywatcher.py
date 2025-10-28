@@ -213,7 +213,7 @@ class ActivityWatcherSession:
 
         Logger.info(TAG + f"Initializing activity watcher")
         self._startMonitoring()
-        if currentSettings["token"] and self.currentSettings["showGameActivity"]:
+        if self.currentSettings["token"] and self.currentSettings["showGameActivity"]:
             Logger.info(TAG + f"Initializing rpc session")
             self.rpcSession = rpc.RPCSession()
             self.rpcSession.changeRPC(rpc.models.ChangeRPCPayload(
