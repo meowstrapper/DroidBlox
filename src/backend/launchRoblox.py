@@ -37,7 +37,7 @@ if platform == "android":
                     icon = "alert"
                 ),
                 MDDialogHeadlineText(
-                    title = "Roblox isn't installed"
+                    text = "Roblox isn't installed"
                 ),
                 MDDialogSupportingText(
                     text = "Cannot find Roblox in this device. Make sure it's properly installed."

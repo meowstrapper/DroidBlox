@@ -54,6 +54,30 @@ I only know python, ehh.. Feel free to recreate my project in Kotlin, Java, or o
 # NOTE
 Will be refactored into kotlin soon :33
 
+## Building & Testing
+1. Depending on your OS, you will need **OpenJDK 17** with the environment variables properly set (e.g. JAVA_HOME) and **ADB (Android Debug Bridge)**
+2. Clone this repository
+```sh
+$ git clone https://github.com/meowstrapper/DroidBlox
+$ cd DroidBlox
+```
+3. Install pip requirements
+```sh
+$ pip3 install -r requirements.txt
+```
+4. Build the APK (takes around >≈ 50 mins at the first build and >≈ 10 mins for next builds, depends on your hardware)
+```sh
+$ buildozer -v android debug # outputs apk to bin/dbtools-(VERSION)-(ARCH)-debug.apk
+```
+5. Install the APK
+```sh
+$ adb install bin/dbtools-(VERSION)-(ARCH)-debug.apk
+```
+6. Launch the APK and get the logcat output
+```sh
+$ adb logcat --pid $(adb shell pidof com.drake.dbtools)
+```
+
 # License
 - DroidBlox is licensed under the [GNU GPL v2.0 License](https://github.com/meowstrapper/DroidBlox/blob/main/LICENSE)
 - Bloxstrap is license under the [MIT License](https://github.com/bloxstraplabs/bloxstrap/blob/main/LICENSE)
