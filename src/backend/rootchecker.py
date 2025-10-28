@@ -1,7 +1,9 @@
 # TODO: delete this in the future because of libsu
 from kivy.logger import Logger
+
 from typing import Union
 import os
+import subprocess
 
 TAG = "DBRootChecker" + ": "
 
