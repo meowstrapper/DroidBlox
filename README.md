@@ -34,7 +34,7 @@ The discord rich presence feature uses the Discord gateway connection. **Use it 
     - Be able to set your RPC about your playing status (with [BloxstrapRPC](https://github.com/bloxstraplabs/bloxstrap/wiki/Integrating-Bloxstrap-functionality-into-your-game) supported) 
     - Choose if you want others to join you by looking at your RPC
     - Be able to rejoin the last game at the same server you joined
-- **Fast Flags**
+- **Fast Flags (NOT WORKING)**
     - Be able to customize them with ease
     - Merge your current fast flags with other ones
     - Retain your fast flags after updating
