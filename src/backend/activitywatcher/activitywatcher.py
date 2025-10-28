@@ -4,7 +4,7 @@ from kivy.logger import Logger
 from backend.apis import discord, roblox
 from backend.files import settings, playlogs, paths
 from backend.rootchecker import suBinaryPath
-from backend.threadtools import scheduleInClock
+from backend.threadtools import scheduleInClock, scheduleInThread
 
 import backend.rpc as rpc
 from .models import *
@@ -248,7 +248,7 @@ class ActivityWatcherSession:
         if self.rpcSession:
             self.rpcSession.stop()
         
-    @scheduleInClock
+    @scheduleInThread
     def _handleNotifyServerLocation(self):
         location = fetchIPLocation(self.udmuxIp)
         if not location:
@@ -266,7 +266,7 @@ class ActivityWatcherSession:
         Logger.debug(TAG + f"Sending out notification")
         notification.send()
     
-    @scheduleInClock
+    @scheduleInThread
     def _handleServerJoined(self):
         Logger.debug(TAG + f"Fetching game (and user) thumbnail url")
         thumbnailUrls = roblox.getThumbnails([
@@ -330,7 +330,7 @@ class ActivityWatcherSession:
         self.originalRPCArgs = rpcToSet
         self.rpcSession.changeRPC(rpcToSet)
     
-    @scheduleInClock
+    @scheduleInThread
     def _handleBloxstrapRPC(self, message: BSRPCMessage):
         if message.command == "SetLaunchData" and self.currentSettings["allowActivityJoining"]:
             rpcToSet = cloneDataclass(self.originalRPCArgs)
