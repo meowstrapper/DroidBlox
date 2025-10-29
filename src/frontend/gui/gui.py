@@ -36,21 +36,20 @@ class DroidBloxGUI(MDApp):
         Logger.debug(TAG + "on_pause()")
         return True
 
-    def on_resume(self):
-        Logger.debug(TAG + "on_resume()")
-        pass
-
     def on_start(self):
         Logger.info(TAG + "Checking for root access")
-        # if not checkForRootAccess():
-        #     Logger.error(TAG + "Not given root access or no root, prompting dialog.")
-        #     self.promptNotRooted()
+        if not checkForRootAccess():
+            Logger.error(TAG + "Not given root access or no root, prompting dialog.")
+            self.promptNotRooted()
+    
+    def on_resume(self):
+        Logger.info(TAG + "on_resume()")
+        pass
 
-        Logger.error(self.root.get_ids().ScreenManager.get_ids().IntegrationsScreen.main.ids)
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Darkgreen"
-
+        
         return MDScreen(
             MDNavigationLayout(MDScreenManager(
                 Integrations(),
