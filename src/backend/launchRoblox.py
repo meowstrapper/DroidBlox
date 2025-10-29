@@ -21,19 +21,29 @@ __all__ = ["launchRoblox"]
 
 if platform == "android":
     from android import mActivity # type: ignore
-    from jnius import autoclass, cast
+    from jnius import autoclass, cast, JavaException
+    
+    currentActivity = cast('android.app.Activity', mActivity)
+
     Intent = autoclass("android.content.Intent")
     Uri = autoclass("android.net.Uri")
+    ComponentName = autoclass("android.content.ComponentName")
 
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")
 
         currentSettings = settings.readSettings()
-        currentActivity = cast('android.app.Activity', mActivity)
-        launchIntent = currentActivity.getPackageManager().getLaunchIntentForPackage("com.roblox.client")
+        
+        launchIntent = Intent(Intent.ACTION_VIEW)
+        component = ComponentName("com.roblox.client", "com.roblox.client.ActivityProtocolLaunch")
+        launchIntent.setComponent(component)
+        launchIntent.setData(Uri.parse(deeplinkUrl))
 
-        if not launchIntent:
-            Logger.error(TAG + "launchIntent is None! Prompting and not starting.")
+        try:
+            Logger.debug(TAG + "Starting intent")
+            currentActivity.startActivity(launchIntent)
+        except JavaException as e:
+            Logger.error(TAG + f"Error while launching intent: {e}. Prompting and not starting.")
             MDDialog(
                 MDDialogIcon(
                     icon = "alert"
@@ -46,15 +56,6 @@ if platform == "android":
                 )
             ).open()
             return
-        
-        # if currentSettings["applyFFlags"]:
-        #     Logger.info(TAG + "Applying fast flags")
-        #     fflags.applyFFlagsToRoblox()
-
-        # launchIntent.setData(Uri.parse(deeplinkUrl))
-        Logger.debug(TAG + "Starting intent")
-        #currentActivity.startActivity(launchIntent)
-        webbrowser.open(deeplinkUrl)
         
         if currentSettings["enableActivityTracking"]:
             Logger.info(TAG + "Starting activity tracker")
