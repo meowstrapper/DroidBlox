@@ -2,6 +2,7 @@
 
 from kivy.logger import Logger
 from kivy.metrics import dp
+from kivy.properties import StringProperty, NumericProperty
 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDButton, MDButtonIcon, MDButtonText
