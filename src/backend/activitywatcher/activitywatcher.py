@@ -3,7 +3,6 @@ from kivy.logger import Logger
 
 from backend.apis import discord, roblox
 from backend.files import settings, playlogs, paths
-from backend.notifications import notify
 from backend.rootchecker import suBinaryPath
 from backend.threadtools import scheduleInClock, scheduleInThread
 
@@ -18,7 +17,7 @@ import threading
 import time
 import urllib
 
-from plyer.notification import notify
+from plyer import notification
 import requests
 
 TAG = "DBActivityWatcher" + ": "
@@ -257,7 +256,7 @@ class ActivityWatcherSession:
             return
         Logger.info(TAG + f"Connected at {location}")
         Logger.debug(TAG + f"Sending out notification")
-        notify(
+        notification.notify(
             title = "Connected to server",
             message = f"Located at {location}"
         )

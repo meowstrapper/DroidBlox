@@ -24,8 +24,6 @@ if platform == "android":
     from jnius import autoclass, cast
     Intent = autoclass("android.content.Intent")
     Uri = autoclass("android.net.Uri")
-    
-    ActivityWatcherService = autoclass("com.drake.droidblox.ServiceActivityWatcher")
 
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")
@@ -59,7 +57,7 @@ if platform == "android":
         webbrowser.open(deeplinkUrl)
         
         if currentSettings["enableActivityTracking"]:
-            Logger.info(TAG + "Starting activity tracker service")
-            ActivityWatcherService.start(mActivity, '')
+            Logger.info(TAG + "Starting activity tracker")
+            ActivityWatcherSession().start()
 else:
     Logger.info(TAG + f"Running on {platform}, not importing.")
