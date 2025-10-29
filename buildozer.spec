@@ -123,7 +123,7 @@ android.permissions = android.permission.INTERNET, POST_NOTIFICATIONS
 android.api = 35
 
 # (int) Minimum API your APK / AAB will support.
-android.minapi = 23
+android.minapi = 26
 
 # (int) Android SDK version to use
 #android.sdk = 20

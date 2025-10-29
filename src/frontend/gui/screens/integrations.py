@@ -1,5 +1,6 @@
 from kivy.logger import Logger
 
+from backend.apis.discord import getUsername, logout
 from backend.files import settings
 from frontend.gui.elements import (
     ExtendedButton,
@@ -21,23 +22,41 @@ except:
     def launchRoblox(): ...
 
 loggingIntoDiscord = False
-def _onLoginCompleted(token):
+def _onLoginCompleted(token, widget: ExtendedButton):
     global loggingIntoDiscord
-    Logger.debug(TAG + "Login completed, setting up token")
+    Logger.info(TAG + "Login completed, setting up token")
     settings.writeSetting("token", token)
     loggingIntoDiscord = False
 
-def _loginToDiscord():
+    Logger.debug(TAG + "Setting up username and changing callback")
+
+    username = getUsername(token)
+    Logger.info(TAG + f"Logged in as {username}")
+
+    widget.mainTitle.text = "Logout of Discord"
+    widget.mainSubtitle.text = f"Logged in as {username}"
+    widget.callback = lambda widget: _logoutOfDiscord(widget, token)
+
+def _loginToDiscord(widget: ExtendedButton):
     global loggingIntoDiscord
     if loggingIntoDiscord: return
     loggingIntoDiscord = True
 
-    Logger.debug(TAG + f"Logging into discord, attempting to create webview")
+    Logger.info(TAG + f"Logging into discord, attempting to create webview")
     webview = DiscordLoginWebView()
-    webview.onLoginCompleted = _onLoginCompleted
+    webview.onLoginCompleted = lambda token: _onLoginCompleted(token, widget)
     
     Logger.debug(TAG + "Starting the webview")
     webview.startWebview()
+
+def _logoutOfDiscord(widget: ExtendedButton, token):
+    Logger.info(TAG + "Logging out of discord")
+    logout(token)
+
+    Logger.debug(TAG + "Changing callback")
+    widget.mainTitle.text = "Login to Discord"
+    widget.mainSubtitle.text = "Login to Discord to show your game activity."
+    widget.callback = _loginToDiscord
 
 class Integrations(BasicScreen):
     def __init__(self, *args, **kwargs):
@@ -75,9 +94,9 @@ class Integrations(BasicScreen):
             ),
             SectionText("Discord Rich Presence"),
             ExtendedButton(
-                title = "Login To Discord",
-                subtitle = "Login to discord to show your game activity.",
-                callback = _loginToDiscord,
+                title = "Login To Discord" if not currentSettings["token"] else "Logout of Discord",
+                subtitle = "Login to discord to show your game activity." if not currentSettings["token"] else f"Logged in as {getUsername(currentSettings["token"])}",
+                callback = _loginToDiscord if not currentSettings["token"] else _logoutOfDiscord,
                 id = "loginToDiscord"
             ),
             ExtendedToggle(

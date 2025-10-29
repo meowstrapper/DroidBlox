@@ -1,4 +1,4 @@
-from kivy.clock import Clock, mainthread
+from kivy.clock import Clock
 from kivy.metrics import dp
 from kivy.properties import BooleanProperty, NumericProperty, ObjectProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
@@ -27,6 +27,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.scrollview import MDScrollView
 from kivymd.uix.selectioncontrol import MDSwitch
 from kivymd.uix.textfield import MDTextField
+
+from backend.threadtools import scheduleInClock
 
 from typing import Any, Callable, List
 import webbrowser
@@ -62,7 +64,8 @@ class BasicScreen(MDScreen):
             ),
             MDScrollView(
                 self.main,
-                do_scroll_x = False
+                do_scroll_x = False,
+                id = "ScrollView"
             ),
             orientation = "vertical"
         ))
@@ -74,7 +77,7 @@ class BasicScreen(MDScreen):
     def add_widgets(self, *args): # any way to do this efficiently?
         for element in args:
             self.main.add_widget(element)
-    
+        print("E", self.get_ids().ScrollView.get_ids())
     def createRef(self, url, text = "Learn more. "):
         primaryColor = self.theme_cls.primaryColor
         r = round(primaryColor[0] * 255)
@@ -106,7 +109,7 @@ class IconWithTextDetails(MDBoxLayout): # inspired by kizzy lol
     icon = StringProperty()
     title = StringProperty()
     subtitle = StringProperty()
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.ripple_behavior = True
@@ -148,11 +151,12 @@ class IconWithTextDetails(MDBoxLayout): # inspired by kizzy lol
         )
 
 class ExtendedButton(RectangularRippleBehavior, IconWithTextDetails):
-    callback = ObjectProperty(lambda: ...)
+    callback = ObjectProperty(lambda x: ...)
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
     def start_ripple(self): # TODO: improve this
-        mainthread(self.callback)()
+        scheduleInClock(callback)(self)
         super().start_ripple()
     
 
