@@ -27,7 +27,7 @@ if platform == "android":
 
     Logger.debug(TAG + "Getting activity icon")
     packageManager = dbActivity.getPackageManager()
-    activityInfo = packageManager.getActivityInfo(activity.getComponentName(), 0)
+    activityInfo = packageManager.getActivityInfo(dbActivity.getComponentName(), 0)
     if activityInfo.icon == 0:
         activityInfo = packageManager.getApplicationInfo("com.drake.droidblox", 0)
     
