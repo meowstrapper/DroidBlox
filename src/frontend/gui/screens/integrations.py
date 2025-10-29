@@ -95,7 +95,7 @@ class Integrations(BasicScreen):
             SectionText("Discord Rich Presence"),
             ExtendedButton(
                 title = "Login To Discord" if not currentSettings["token"] else "Logout of Discord",
-                subtitle = "Login to discord to show your game activity." if not currentSettings["token"] else f"Logged in as {getUsername(currentSettings["token"])}",
+                subtitle = "Login to discord to show your game activity." if not currentSettings["token"] else f"Logged in as {getUsername(currentSettings['token'])}",
                 callback = _loginToDiscord if not currentSettings["token"] else _logoutOfDiscord,
                 id = "loginToDiscord"
             ),
