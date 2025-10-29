@@ -3,6 +3,7 @@ from kivy.logger import Logger
 
 from backend.apis import discord, roblox
 from backend.files import settings, playlogs, paths
+from backend.notifications import notify
 from backend.rootchecker import suBinaryPath
 from backend.threadtools import scheduleInClock, scheduleInThread
 
@@ -17,7 +18,6 @@ import threading
 import time
 import urllib
 
-from android_notify import Notification
 import requests
 
 TAG = "DBActivityWatcher" + ": "
@@ -256,16 +256,16 @@ class ActivityWatcherSession:
             Logger.error(TAG + "No location returned, not doing anything")
             return
         Logger.info(TAG + f"Connected at {location}")
-        notification = Notification(
-            title = "Connected to server",
-            message = f"Located at {location}"
-        )
-        notification.addLine(f"Place ID: {self.placeId}")
-        notification.addLine(f"Job ID: {self.jobId}")
-        notification.addLine(f"UDMUX IP: {self.udmuxIp}")
+        # notification = Notification(
+        #     title = "Connected to server",
+        #     message = f"Located at {location}"
+        # )
+        # notification.addLine(f"Place ID: {self.placeId}")
+        # notification.addLine(f"Job ID: {self.jobId}")
+        # notification.addLine(f"UDMUX IP: {self.udmuxIp}")
 
         Logger.debug(TAG + f"Sending out notification")
-        notification.send()
+        notify("Connected to server", f"Located at {location}")
     
     @scheduleInThread
     def _handleServerJoined(self):
