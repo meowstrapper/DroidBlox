@@ -77,7 +77,7 @@ class BasicScreen(MDScreen):
     def add_widgets(self, *args): # any way to do this efficiently?
         for element in args:
             self.main.add_widget(element)
-        print("E", self.get_ids().ScrollView.get_ids())
+
     def createRef(self, url, text = "Learn more. "):
         primaryColor = self.theme_cls.primaryColor
         r = round(primaryColor[0] * 255)

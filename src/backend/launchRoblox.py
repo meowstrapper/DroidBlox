@@ -13,6 +13,8 @@ from kivymd.uix.dialog import (
 from backend.activitywatcher import ActivityWatcherSession
 from backend.files import settings, fflags
 
+import webbrowser
+
 TAG = "DBLaunchRoblox" + ": "
 
 __all__ = ["launchRoblox"]
@@ -45,14 +47,15 @@ if platform == "android":
             ).open()
             return
         
-        if currentSettings["applyFFlags"]:
-            Logger.info(TAG + "Applying fast flags")
-            fflags.applyFFlagsToRoblox()
+        # if currentSettings["applyFFlags"]:
+        #     Logger.info(TAG + "Applying fast flags")
+        #     fflags.applyFFlagsToRoblox()
 
-        launchIntent.setData(Uri.parse(deeplinkUrl))
+        # launchIntent.setData(Uri.parse(deeplinkUrl))
         Logger.debug(TAG + "Starting intent")
-        currentActivity.startActivity(launchIntent)
-
+        #currentActivity.startActivity(launchIntent)
+        webbrowser.open(deeplinkUrl)
+        
         if currentSettings["enableActivityTracking"]:
             Logger.info(TAG + "Starting activity tracker")
             ActivityWatcherSession().start()

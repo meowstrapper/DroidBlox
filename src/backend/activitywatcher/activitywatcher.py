@@ -216,6 +216,7 @@ class ActivityWatcherSession:
         Logger.info(TAG + f"Activity watcher ended!")
         if self.placeId:
             Logger.debug(TAG + "Attempting to log play session")
+            self.leftAt = time.time()
             self._logPlaySession()
         if self.rpcSession:
             Logger.debug(TAG + "Stopping RPC Session")

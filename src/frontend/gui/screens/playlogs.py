@@ -11,9 +11,11 @@ from kivymd.uix.fitimage import FitImage
 from backend.apis.roblox import getGameInfo, getThumbnails
 from backend.apis.roblox.models import Thumbnail, Game
 from backend.files.playlogs import getPlayLogs
+from backend.launchRoblox import launchRoblox
 from frontend.gui.elements import BasicScreen, FixMDLabel
 
-import datetime
+from datetime import datetime
+import time
 
 __all__ = ["PlayLogs"]
 
@@ -30,7 +32,7 @@ class RecentGamePlayed(MDBoxLayout):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.size_hint = (1, None)
-        self.height = dp(120)
+        self.height = dp(130)
         self.radius = dp(15)
         self.md_bg_color = self.theme_cls.surfaceContainerHighestColor
 
@@ -53,11 +55,11 @@ class RecentGamePlayed(MDBoxLayout):
                     text = self.gameName,
                     size_hint = (1, None),
                     adaptive_height = True,
-                    fontSize = dp(24),
+                    fontSize = dp(22),
                 ),
                 FixMDLabel(
                     text = f"{self.gameCreator} • {datetime.fromtimestamp(self.playedAt).strftime('%m/%d/%Y %H:%M')} - {datetime.fromtimestamp(self.leftAt).strftime('%H:%M')}",
-                    fontSize = dp(16),
+                    fontSize = dp(12),
                     adaptive_height = True
                 ),
                 spacing = dp(-5),
@@ -72,11 +74,13 @@ class RecentGamePlayed(MDBoxLayout):
                 MDButtonText(
                     text = f"Rejoin {'(might be expired)' if mightBeExpired else ''}"
                 ),
+                on_press = lambda x: launchRoblox(self.robloxDeeplink),
                 style = "filled"
             ),
             spacing = dp(6),
             padding = dp(15),
-            size_hint = (1, 1),
+            adaptive_height = True,
+            pos_hint = {"center_y": 0.5},
             orientation = "vertical"
         ))
 
@@ -122,9 +126,9 @@ class PlayLogs(BasicScreen):
             gameInfo: Game = gameInfosReq[index]
             thumbnailUrl = thumbnailsReq[index]
 
-            self.add_widget(RecentGamePlayed(
+            self.main.add_widget(RecentGamePlayed(
                 gameName = gameInfo.name, gameCreator = gameInfo.creator,
                 gameIconUrl = thumbnailUrl, playedAt = playSession.playedAt,
-                leftAt = playSession.leftAt, robloxDeeplink = playSession.playedAt
+                leftAt = playSession.leftAt, robloxDeeplink = playSession.deeplink
             ))
         Logger.debug(TAG + "Done loading")

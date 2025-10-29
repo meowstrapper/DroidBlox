@@ -71,7 +71,7 @@ class Integrations(BasicScreen):
             ExtendedButton(
                 title = "Launch Roblox",
                 subtitle = "Start playing Roblox",
-                callback = launchRoblox
+                callback = lambda widget: launchRoblox()
             ),
             SectionText("Activity tracking"),
             ExtendedToggle(

@@ -220,8 +220,8 @@ android.add_src = java
 #android.add_resources =
 
 # (list) Gradle dependencies to add
-android.gradle_dependencies = androidx.core:core:1.6.0,
-    androidx.core:core-ktx:1.15.0
+android.gradle_dependencies = androidx.core:core:1.17.0,
+    androidx.core:core-ktx:1.17.0
     # com.github.topjohnwu.libsu:core:6.0.0,
     # com.github.topjohnwu.libsu:nio:6.0.0
 
