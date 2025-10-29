@@ -51,6 +51,7 @@ requirements = python3,
     asynckivy,
     android,
     #android-notify,
+    plyer
     requests,
     websockets,
     pygments
@@ -75,8 +76,8 @@ orientation = portrait
 # followed by a colon, followed by the name of the Python script (.py file) that should be
 # launched. This is optionally followed by ":foreground" for foreground services or
 # ":foreground:sticky" for sticky foreground services. The default is a background service.
-# Bound services are not supported.
-#services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
+# Bound services are not supported.-
+services = ActivityWatcher:src/services/watchRoblox.py
 
 #
 # OSX Specific
@@ -228,7 +229,7 @@ android.add_src = java
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
 # android.enable_androidx requires android.api >= 28
-android.enable_androidx = True
+# android.enable_androidx = True
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option

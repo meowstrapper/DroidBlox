@@ -17,7 +17,12 @@ def getGameInfo(universeIds: List[int]) -> List[Game]:
         Logger.error(TAG + f"Failed to get roblox game info. Got {gameInfosReq.status_code}\nText:\n{gameInfosReq.text}")
         return
     
-    return [Game.deserialize(gameInfo) for gameInfo in gameInfosReq.json()["data"]]
+    return [
+        game
+        for universeId in universeIds
+        for game in [Game.deserialize(gameInfo) for gameInfo in gameInfosReq.json()["data"]]
+        if game.universeId == universeId
+    ] # roblox fucks up the returned data if there are duplicates of universe ids
 
 def getUserInfo(userId: int) -> User:
     requestTo = f"https://users.roblox.com/v1/users/{userId}"

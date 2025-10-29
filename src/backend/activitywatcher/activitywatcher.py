@@ -18,6 +18,7 @@ import threading
 import time
 import urllib
 
+from plyer.notification import notify
 import requests
 
 TAG = "DBActivityWatcher" + ": "
@@ -216,7 +217,6 @@ class ActivityWatcherSession:
         Logger.info(TAG + f"Activity watcher ended!")
         if self.placeId:
             Logger.debug(TAG + "Attempting to log play session")
-            self.leftAt = time.time()
             self._logPlaySession()
         if self.rpcSession:
             Logger.debug(TAG + "Stopping RPC Session")
@@ -256,16 +256,11 @@ class ActivityWatcherSession:
             Logger.error(TAG + "No location returned, not doing anything")
             return
         Logger.info(TAG + f"Connected at {location}")
-        # notification = Notification(
-        #     title = "Connected to server",
-        #     message = f"Located at {location}"
-        # )
-        # notification.addLine(f"Place ID: {self.placeId}")
-        # notification.addLine(f"Job ID: {self.jobId}")
-        # notification.addLine(f"UDMUX IP: {self.udmuxIp}")
-
         Logger.debug(TAG + f"Sending out notification")
-        notify("Connected to server", f"Located at {location}")
+        notify(
+            title = "Connected to server",
+            message = f"Located at {location}"
+        )
     
     @scheduleInThread
     def _handleServerJoined(self):
@@ -426,6 +421,6 @@ class ActivityWatcherSession:
         playlogs.logPlaySession(playlogs.models.PlaySession(
             universeId = self.universeId,
             playedAt = self.playedAt,
-            leftAt = self.leftAt,
+            leftAt = self.leftAt if self.leftAt else time.time(),
             deeplink = f"https://roblox.com/games/start?placeId={self.placeId}&gameInstanceId={self.jobId}"
         ))
