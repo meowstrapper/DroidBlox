@@ -51,7 +51,7 @@ requirements = python3,
     asynckivy,
     android,
     #android-notify,
-    plyer
+    #plyer
     requests,
     websockets,
     pygments
