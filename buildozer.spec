@@ -324,7 +324,7 @@ android.allow_backup = True
 # android.manifest_placeholders = [:]
 
 # (bool) Skip byte compile for .py files
-# android.no-byte-compile-python = False
+android.no-byte-compile-python = False # i dont want rebuilding every time my code errors, instead i can just edit the py files inside dbPath/files/app (/data/data/com.drake.droidblox/files/app)
 
 # (str) The format used to package the app for release mode (aab or apk or aar).
 android.release_artifact = apk

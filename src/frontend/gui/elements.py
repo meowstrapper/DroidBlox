@@ -156,7 +156,7 @@ class ExtendedButton(RectangularRippleBehavior, IconWithTextDetails):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
     def start_ripple(self): # TODO: improve this
-        scheduleInClock(callback)(self)
+        scheduleInClock(self.callback)(self)
         super().start_ripple()
     
 
