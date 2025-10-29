@@ -120,7 +120,7 @@ android.permissions = android.permission.INTERNET, POST_NOTIFICATIONS
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-android.api = 35
+android.api = 36
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 26
