@@ -17,21 +17,15 @@ if platform == "android":
 
     AndroidString = autoclass('java.lang.String')
     Context = autoclass('android.content.Context')
+    Intent = autoclass('android.content.Intent')
     NotificationBuilder = autoclass('android.app.Notification$Builder')
     NotificationChannel = autoclass("android.app.NotificationChannel")
     NotificationManager = autoclass('android.app.NotificationManager')
-    PendingIntent = autoclass('android.app.PendingIntent')
-    Intent = autoclass('android.content.Intent')
-    Toast = autoclass('android.widget.Toast')
-    BitmapFactory = autoclass('android.graphics.BitmapFactory')
+    R = autoclass("com.drake.droidblox.R")
 
     Logger.debug(TAG + "Getting activity icon")
     packageManager = dbActivity.getPackageManager()
     activityInfo = packageManager.getActivityInfo(dbActivity.getComponentName(), 0)
-    if activityInfo.icon == 0:
-        activityInfo = packageManager.getApplicationInfo("com.drake.droidblox", 0)
-    
-    appIcon = activityInfo.icon
 
     Logger.debug(TAG + "Getting notification service")
     notifService = cast(NotificationManager, dbActivity.getSystemService(
@@ -54,7 +48,7 @@ if platform == "android":
         noti.setTicker(AndroidString(""))
 
         Logger.debug(TAG + "Setting icons")
-        noti.setSmallIcon(appIcon)
+        noti.setSmallIcon(R.drawable.ic_launcher)
         #noti.setLargeIcon(BitmapFactory.decodeFile(appIcon))
 
         Logger.debug(TAG + "Sending out notification")

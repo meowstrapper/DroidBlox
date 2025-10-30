@@ -12,6 +12,7 @@ from backend.apis.roblox import getGameInfo, getThumbnails
 from backend.apis.roblox.models import Thumbnail, Game
 from backend.files.playlogs import getPlayLogs
 from backend.launchRoblox import launchRoblox
+from backend.threadtools import scheduleInClock
 from frontend.gui.elements import BasicScreen, FixMDLabel
 
 from datetime import datetime
@@ -94,6 +95,7 @@ class PlayLogs(BasicScreen):
         self.totalOfPlayLogs = 0
         self.loadPlayLogs()
     
+    @scheduleInClock
     def loadPlayLogs(self):
         Logger.debug(TAG + "Loading play logs")
         playLogs = getPlayLogs()
