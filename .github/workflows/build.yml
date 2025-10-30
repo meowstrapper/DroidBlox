@@ -106,7 +106,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13' #set your python version
+          python-version: '3.14' #set your python version
 
       # Install pip dependencies
       - name: Install pip dependencies
