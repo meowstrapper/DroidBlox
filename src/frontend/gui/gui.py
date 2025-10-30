@@ -26,6 +26,8 @@ from kivymd.uix.transition import MDSharedAxisTransition
 
 from backend.files import settings
 from backend.rootchecker import suBinaryPath, checkForRootAccess
+from backend.threadtools import scheduleInClock
+
 from .elements import NavigationDrawerItem
 from .screens import *
 
@@ -36,11 +38,9 @@ class DroidBloxGUI(MDApp):
         Logger.debug(TAG + "on_pause()")
         return True
 
-    def on_start(self):
+    def on_start(self): # on_start seems to be blocking build()
         Logger.info(TAG + "Checking for root access")
-        if not checkForRootAccess():
-            Logger.error(TAG + "Not given root access or no root, prompting dialog.")
-            self.promptNotRooted()
+        self.checkIfRooted()
     
     def on_resume(self):
         Logger.info(TAG + "on_resume()")
@@ -107,6 +107,12 @@ class DroidBloxGUI(MDApp):
             ),
             on_dismiss = lambda *args: self.stop()
         ).open()
+    
+    @scheduleInClock
+    def checkIfRooted(self):
+        if not checkForRootAccess():
+            Logger.error(TAG + "Not given root access or no root, prompting dialog.")
+            self.promptNotRooted()
     
     def _switchScreen(self, screenToSwitch):
         Logger.debug(TAG + f"Switching screen to {screenToSwitch}")

@@ -5,7 +5,7 @@
 from kivy.logger import Logger
 from kivy.utils import platform
 
-TAG = "DBNotifications"
+TAG = "DBNotifications" + ": "
 
 __all__ = ["notify"]
 
@@ -21,7 +21,7 @@ if platform == "android":
     NotificationBuilder = autoclass('android.app.Notification$Builder')
     NotificationChannel = autoclass("android.app.NotificationChannel")
     NotificationManager = autoclass('android.app.NotificationManager')
-    R = autoclass("com.drake.droidblox.R")
+    RDrawable = autoclass("com.drake.droidblox.R$drawable")
 
     Logger.debug(TAG + "Getting activity icon")
     packageManager = dbActivity.getPackageManager()
@@ -48,7 +48,7 @@ if platform == "android":
         noti.setTicker(AndroidString(""))
 
         Logger.debug(TAG + "Setting icons")
-        noti.setSmallIcon(R.drawable.ic_launcher)
+        noti.setSmallIcon(RDrawable.ic_launcher)
         #noti.setLargeIcon(BitmapFactory.decodeFile(appIcon))
 
         Logger.debug(TAG + "Sending out notification")
