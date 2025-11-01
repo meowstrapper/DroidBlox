@@ -3,12 +3,12 @@
 name: Build APK
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      APK_TYPE:
+        description: 'Type of APK to build (release or debug)'
+        required: true
+        default: debug
 
 jobs:
   build:
@@ -133,7 +133,7 @@ jobs:
       - name: Build with Buildozer
         id: buildozer
         run: |
-          yes | buildozer -v android debug
+          yes | buildozer -v ${{ github.event.inputs.APK_TYPE }} debug
         # yes | buildozer -v android release
         # run this for generating aab (Android App Bundle) [Required by google play]
 
