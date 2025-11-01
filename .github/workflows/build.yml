@@ -133,7 +133,7 @@ jobs:
       - name: Build with Buildozer
         id: buildozer
         run: |
-          yes | buildozer -v ${{ github.event.inputs.APK_TYPE }} debug
+          yes | buildozer -v android ${{ github.event.inputs.APK_TYPE }}
         # yes | buildozer -v android release
         # run this for generating aab (Android App Bundle) [Required by google play]
 
