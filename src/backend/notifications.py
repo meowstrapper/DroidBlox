@@ -38,7 +38,7 @@ if platform == "android":
         subtitle = AndroidString(subtitle.encode("utf-8"))
 
         Logger.debug(TAG + "Building notification")
-        channel = NotificationChannel("com.drake.droidblox", title, NotificationManager.IMPORTANCE_URGENT)
+        channel = NotificationChannel("com.drake.droidblox", title, NotificationManager.IMPORTANCE_HIGH)
         notifService.createNotificationChannel(channel)
 
         Logger.debug(TAG + "Constructing notification")
