@@ -12,7 +12,7 @@ from kivymd.uix.dialog import (
 
 from backend.activitywatcher import ActivityWatcherSession
 from backend.files import settings, fflags
-from backend.threadtools import scheduleInClock
+from backend.threadtools import scheduleInThread
 
 import webbrowser
 
@@ -30,7 +30,7 @@ if platform == "android":
     Uri = autoclass("android.net.Uri")
     ComponentName = autoclass("android.content.ComponentName")
 
-    @scheduleInClock
+    @scheduleInThread
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")
 

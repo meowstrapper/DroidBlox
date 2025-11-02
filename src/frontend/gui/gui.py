@@ -26,8 +26,7 @@ from kivymd.uix.transition import MDSharedAxisTransition
 
 from backend.files import settings
 from backend.rootchecker import suBinaryPath, checkForRootAccess
-from backend.threadtools import scheduleInClock
-
+from backend.threadtools import scheduleInThread
 from .elements import NavigationDrawerItem
 from .screens import *
 
@@ -108,7 +107,7 @@ class DroidBloxGUI(MDApp):
             on_dismiss = lambda *args: self.stop()
         ).open()
     
-    @scheduleInClock
+    @scheduleInThread
     def checkIfRooted(self):
         if not checkForRootAccess():
             Logger.error(TAG + "Not given root access or no root, prompting dialog.")
