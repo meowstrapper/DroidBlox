@@ -1,6 +1,7 @@
 # DroidBlox
 <div align="center">
-<img src="assets/icon.png" height=300>
+<img src="assets/icon.png" height=200>
+<img src="assets/features.png">
 
 ![MIT License](https://img.shields.io/github/license/helloplauz10/DroidBlox?color=47b520)
 ![its slow](https://img.shields.io/badge/made%20with-slow%20python-47b520)
@@ -24,7 +25,7 @@ Anytime soon, maybe if I dont procasinate about making it.
 # WARNING!
 It's unsure if you will get banned on Roblox for using this, if you have been banned, join [our Discord server](https://discord.gg/zFspvBwH92) and send the ban screenshot there.
 
-The discord rich presence feature uses the Discord gateway connection. **Use it at your own risk.**
+The discord rich presence feature uses the Discord gateway connection. **Use it at your own risk.** This has also been stated in [Kizzy's repository.](https://github.com/dead8309/Kizzy?tab=readme-ov-file#download)
 
 # Features
 - **Integrations**
@@ -70,11 +71,11 @@ $ pip3 install -r requirements.txt
 ```
 4. Build the APK (takes around >≈ 50 mins at the first build and >≈ 10 mins for next builds, depends on your hardware)
 ```sh
-$ buildozer -v android debug # outputs apk to bin/dbtools-(VERSION)-(ARCH)-debug.apk
+$ buildozer -v android debug # outputs apk to bin/droidblox-(VERSION)-(ARCH)-debug.apk
 ```
 5. Install the APK
 ```sh
-$ adb install bin/dbtools-(VERSION)-(ARCH)-debug.apk
+$ adb install bin/droidblox-(VERSION)-(ARCH)-debug.apk
 ```
 6. Launch the APK and get the logcat output
 ```sh
