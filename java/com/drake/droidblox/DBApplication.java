@@ -1,5 +1,5 @@
 // made by gemini, pls report any bad code here!!! (and how to fix if you can:3)
-package com.drake;
+package com.drake.droidblox;
 
 import android.app.ActivityManager;
 import android.app.Application;
