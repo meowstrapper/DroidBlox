@@ -30,7 +30,7 @@ if platform == "android":
     Uri = autoclass("android.net.Uri")
     ComponentName = autoclass("android.content.ComponentName")
 
-    @scheduleInThread
+    @scheduleInClock
     def launchRoblox(deeplinkUrl = "roblox://"):
         Logger.info(TAG + f"Launching roblox with deeplink url: {deeplinkUrl}")
 

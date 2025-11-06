@@ -108,7 +108,7 @@ class DroidBloxGUI(MDApp):
             on_dismiss = lambda *args: self.stop()
         ).open()
     
-    @scheduleInThread
+    @scheduleInClock
     def checkIfRooted(self):
         if not checkForRootAccess():
             Logger.error(TAG + "Not given root access or no root, prompting dialog.")
