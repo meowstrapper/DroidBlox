@@ -12,7 +12,7 @@ from kivymd.uix.dialog import (
 
 from backend.activitywatcher import ActivityWatcherSession
 from backend.files import settings, fflags
-from backend.threadtools import scheduleInThread
+from backend.threadtools import scheduleInClock
 
 import webbrowser
 
