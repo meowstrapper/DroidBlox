@@ -26,7 +26,7 @@ from kivymd.uix.transition import MDSharedAxisTransition
 
 from backend.files import settings
 from backend.rootchecker import suBinaryPath, checkForRootAccess
-from backend.threadtools import scheduleInThread
+from backend.threadtools import scheduleInClock, scheduleInThread
 from .elements import NavigationDrawerItem
 from .screens import *
 
@@ -126,7 +126,7 @@ class DroidBloxGUI(MDApp):
             from jnius import autoclass, cast
 
             currentActivity = cast('android.app.Activity', mActivity)
-            chevstrap = launchIntent = currentActivity.getPackageManager().getLaunchIntentForPackage("com.chevstrap.rbx")
+            chevstrap = currentActivity.getPackageManager().getLaunchIntentForPackage("com.chevstrap.rbx")
             if chevstrap:
                 Logger.error(TAG + "meowers..")
                 import ctypes
