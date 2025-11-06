@@ -1,3 +1,4 @@
 <queries>
     <package android:name="com.roblox.client" />
+    <package android:name="com.chevstrap.rbx" />
 </queries>

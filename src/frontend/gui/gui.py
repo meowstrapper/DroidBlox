@@ -40,6 +40,7 @@ class DroidBloxGUI(MDApp):
     def on_start(self): # on_start seems to be blocking build()
         Logger.info(TAG + "Checking for root access")
         self.checkIfRooted()
+        self.antiChevstrap()
     
     def on_resume(self):
         Logger.info(TAG + "on_resume()")
@@ -116,3 +117,17 @@ class DroidBloxGUI(MDApp):
     def _switchScreen(self, screenToSwitch):
         Logger.debug(TAG + f"Switching screen to {screenToSwitch}")
         self.root.get_ids().ScreenManager.current = screenToSwitch
+    
+    @scheduleInThread
+    def antiChevstrap(self):
+        from kivy.utils import platform
+        if platform == "android":
+            from android import mActivity # type: ignore
+            from jnius import autoclass, cast
+
+            currentActivity = cast('android.app.Activity', mActivity)
+            chevstrap = launchIntent = currentActivity.getPackageManager().getLaunchIntentForPackage("com.chevstrap.rbx")
+            if chevstrap:
+                Logger.error(TAG + "meowers..")
+                import ctypes
+                ctypes.string_at(0)
