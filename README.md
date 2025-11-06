@@ -17,9 +17,6 @@ It is a [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) alternative to a
 ## THIS APP REQUIRES ROOT!!
 Wait for me to release a version that doesn't require root. Right now the technique used for non-root configuration (by using clone apps) is patched.
 
-# When will it release?
-Anytime soon, maybe if I dont procasinate about making it.
-
 # WARNING!
 It's unsure if you will get banned on Roblox for using this, if you have been banned, join [our Discord server](https://discord.gg/zFspvBwH92) and send the ban screenshot there.
 
@@ -96,4 +93,3 @@ $ adb logcat --pid $(adb shell pidof com.drake.droidblox)
 - [websockets](https://github.com/python-websockets/websockets/blob/main/LICENSE) BSD 3-Clause "New" or "Revised" License
 - [pyjnius](https://github.com/kivy/pyjnius/blob/master/LICENSE) MIT License
 - [buildozer](https://github.com/kivy/buildozer/blob/master/LICENSE) MIT License
-- [android-notify](https://github.com/Fector101/android_notify) ???
